@@ -17,7 +17,7 @@ pipeline {
                 git branch: 'main', credentialsId: 'github', url:'https://github.com/katoch1234/kubernetes-manifests.git'
             }
         }
-        }
+        
 
         stage('Update Image in deployment.yaml') {
             steps {
@@ -33,3 +33,4 @@ pipeline {
             }
         }
     }
+}
