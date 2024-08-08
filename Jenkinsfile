@@ -12,14 +12,11 @@ pipeline {
     }
 
     stages {
-        stage('Git Checkout') {
-            steps {
-                script {
-                    git branch: "${BRANCH}", url: "${REPO_URL}"
-                    sh "ls -lhtra"
-                }
+        sstage('git checkout') {
+            steps{
+                git branch: 'main', credentialsId: 'github', url:'https://github.com/katoch1234/kubernetes-manifests.git'
             }
-        }
+        }}
 
         stage('Update Image in deployment.yaml') {
             steps {
