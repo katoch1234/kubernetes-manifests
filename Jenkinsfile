@@ -7,8 +7,8 @@ pipeline {
         REPO_URL = 'https://github.com/katoch1234/kubernetes-manifests.git'
         BRANCH = 'main'
         GIT_CREDENTIALS = 'your-jenkins-credentials-id'  // Replace with your Jenkins credentials ID
-        GIT_USER_NAME = 'Vaibhav Katoch'
-        GIT_USER_EMAIL = 'katochvaibhav3@gmail.com'
+        GIT_USER_NAME = 'cu.16bcs1092'
+        GIT_USER_EMAIL = 'cu.16bcs1092@gmail.com'
     }
 
     stages {
