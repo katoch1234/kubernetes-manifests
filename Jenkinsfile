@@ -8,7 +8,7 @@ pipeline {
         BRANCH = 'main'
         GIT_CREDENTIALS = 'your-jenkins-credentials-id'  // Replace with your Jenkins credentials ID
         GIT_USER_NAME = 'cu.16bcs1092'
-        GIT_USER_EMAIL = 'cu.16bcs1092@gmail.com'
+        GIT_USER_EMAIL = 'cu.16bcs1092@gmail.com '
     }
 
     stages {
