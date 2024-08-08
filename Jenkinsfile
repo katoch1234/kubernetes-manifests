@@ -7,7 +7,7 @@ pipeline {
 stages{
         stage('git checkout') {
             steps{
-                checkout scm
+                sh "git clone https://github.com/katoch1234/kubernetes-manifests.git"
                 sh "ls -lhtra"
         }
         }
