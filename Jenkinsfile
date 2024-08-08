@@ -28,7 +28,8 @@ pipeline {
                     sh "cat deployment.yaml"
                     sh "git add deployment.yaml"
                     sh "git commit -m 'Updated image in deployment.yaml by Jenkins Job: ${env.BUILD_NUMBER}'"
-                    sh "git push origin ${BRANCH}"
+                    sh "ls -lhtr && git status"
+                    sh "git push"
                 }
             }
         }
