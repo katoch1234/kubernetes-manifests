@@ -6,9 +6,11 @@ pipeline {
 
 stages{
         stage('git checkout') {
-            checkout scm
+            steps{
+                checkout scm
+                sh "ls -lhtra"
         }
-
+        }
         stage('update image in deployment.yaml')
         {
             steps {
