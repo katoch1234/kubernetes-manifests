@@ -29,7 +29,7 @@ pipeline {
                     sh "git add deployment.yaml"
                     sh "git commit -m 'Updated image in deployment.yaml by Jenkins Job: ${env.BUILD_NUMBER}'"
                     sh "ls -lhtr && git status"
-                    sh "git push"
+                    sh "git push HEAD:main"
                 }
             }
         }
