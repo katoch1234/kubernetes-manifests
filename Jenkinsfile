@@ -1,30 +1,38 @@
 pipeline {
-    agent{
+    agent {
         label 'jenkins-agent'
     }
-}
 
-stages{
-        stage('git checkout') {
-            steps{
-                sh "git clone https://github.com/katoch1234/kubernetes-manifests.git"
-                sh "ls -lhtra"
-        }
-        }
-        stage('update image in deployment.yaml')
-        {
+    environment {
+        REPO_URL = 'https://github.com/katoch1234/kubernetes-manifests.git'
+        BRANCH = 'main'
+        GIT_CREDENTIALS = 'your-jenkins-credentials-id'  // Replace with your Jenkins credentials ID
+        GIT_USER_NAME = 'Vaibhav Katoch'
+        GIT_USER_EMAIL = 'katochvaibhav3@gmail.com'
+    }
+
+    stages {
+        stage('Git Checkout') {
             steps {
-                script{
-                    sh "git config user.email katochvaibhav3@gmail.com"
-                        sh "git config user.name vaibhav "
-                        //sh "git switch master"
-                        sh "cat deployment.yaml"
-                        sh "sed -i 's/595496445232\.dkr\.ecr\.us-east-1\.amazonaws\.com\/vaibhav.*/595496445232\.dkr\.ecr\.us-east-1\.amazonaws\.com\/vaibhav:${DOCKERTAG}/g' deployment.yaml"
-                        sh "cat deployment.yaml"
-                        sh "git add ."
-                        sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
-                        sh "git push HEAD:main"
-                    
+                script {
+                    git branch: "${BRANCH}", url: "${REPO_URL}"
+                    sh "ls -lhtra"
                 }
             }
         }
+
+        stage('Update Image in deployment.yaml') {
+            steps {
+                script {
+                    sh "git config user.email '${GIT_USER_EMAIL}'"
+                    sh "git config user.name '${GIT_USER_NAME}'"
+                    sh "sed -i 's|595496445232\\.dkr\\.ecr\\.us-east-1\\.amazonaws\\.com\\/vaibhav.*|595496445232\\.dkr\\.ecr\\.us-east-1\\.amazonaws\\.com\\/vaibhav:${DOCKERTAG}|g' deployment.yaml"
+                    sh "cat deployment.yaml"
+                    sh "git add deployment.yaml"
+                    sh "git commit -m 'Updated image in deployment.yaml by Jenkins Job: ${env.BUILD_NUMBER}'"
+                    sh "git push origin ${BRANCH}"
+                }
+            }
+        }
+    }
+}
