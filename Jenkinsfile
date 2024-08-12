@@ -1,5 +1,5 @@
 pipeline {
-    agent any }
+    agent any
 
     environment {
         REPO_URL = 'https://github.com/katoch1234/kubernetes-manifests.git'
