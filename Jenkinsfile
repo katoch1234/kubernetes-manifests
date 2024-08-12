@@ -31,10 +31,10 @@ pipeline {
         stage('Pushing the deployment.yaml with updated image') {
             steps{
                 script{
-                    withCredentials([usernamePassword(credentialsId: "${GIT_CREDENTIALS}", usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: "${github-creds}", usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                      sh "git add deployment.yaml"
                      sh "git commit -m 'Updated image in deployment.yaml by Jenkins Job: ${env.BUILD_NUMBER}'"
-                     sh "git push origin main"
+                     sh "git push -u origin main"
                     }
 }
                 }
