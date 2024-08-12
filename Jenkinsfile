@@ -13,7 +13,7 @@ pipeline {
         stage('Update Image in deployment.yaml') {
             steps {
                 script {
-                    sh "git clone "https://github.com/katoch1234/kubernetes-manifests.git"
+                    sh "git clone https://github.com/katoch1234/kubernetes-manifests.git"
                     sh "git config --global user.email '${GIT_USER_EMAIL}'"
                     sh "git config --global user.name '${GIT_USER_NAME}'" 
                     sh "sed -i 's|595496445232\\.dkr\\.ecr\\.us-east-1\\.amazonaws\\.com\\/vaibhav.*|595496445232\\.dkr\\.ecr\\.us-east-1\\.amazonaws\\.com\\/vaibhav:${DOCKERTAG}|g' deployment.yaml"
