@@ -20,8 +20,8 @@ pipeline {
         stage('Update Image in deployment.yaml') {
             steps {
                 script {
-                 /*   sh "git config --global user.email '${GIT_USER_EMAIL}'"
-                    sh "git config --global user.name '${GIT_USER_NAME}'" */
+                    sh "git config --global user.email '${GIT_USER_EMAIL}'"
+                    sh "git config --global user.name '${GIT_USER_NAME}'" 
                     sh "sed -i 's|595496445232\\.dkr\\.ecr\\.us-east-1\\.amazonaws\\.com\\/vaibhav.*|595496445232\\.dkr\\.ecr\\.us-east-1\\.amazonaws\\.com\\/vaibhav:${DOCKERTAG}|g' deployment.yaml"
                     sh "cat deployment.yaml"
                 }
@@ -31,10 +31,11 @@ pipeline {
         stage('Pushing the deployment.yaml with updated image') {
             steps{
                 script{
-                    GIT_CREDS = credentials('${GIT_CREDENTIALS}')
+                    withCredentials([usernamePassword(credentialsId: "${GIT_CREDENTIALS}", usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                      sh "git add deployment.yaml"
                      sh "git commit -m 'Updated image in deployment.yaml by Jenkins Job: ${env.BUILD_NUMBER}'"
                      sh "git push origin main"
+                    }
 }
                 }
             }
