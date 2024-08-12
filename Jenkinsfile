@@ -31,13 +31,13 @@ pipeline {
         stage('Pushing the deployment.yaml with updated image') {
             steps{
                 script{
-                    git branch: 'main', credentialsId: 'github-creds', url: 'https://github.com/katoch1234/kubernetes-manifests.git' {
+                    git branch: 'main', credentialsId: 'github-creds', url: 'https://github.com/katoch1234/kubernetes-manifests.git' 
                      sh "git add deployment.yaml"
                      sh "git commit -m 'Updated image in deployment.yaml by Jenkins Job: ${env.BUILD_NUMBER}'"
                      sh "git push -u origin main"
-                    }
-}
+
                 }
             }
         }
     }
+}
