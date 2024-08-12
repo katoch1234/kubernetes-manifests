@@ -18,7 +18,7 @@ spec:
         app: flaskdemo
     spec:
       containers:
-      - image: 595496445232.dkr.ecr.us-east-1.amazonaws.com/vaibhav:latest
+      - image: 595496445232.dkr.ecr.us-east-1.amazonaws.com/vaibhav:2
         name: flaskdemo
         resources: {}
 status: {}
