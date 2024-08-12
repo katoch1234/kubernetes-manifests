@@ -34,7 +34,7 @@ pipeline {
                     sh "pwd && ls -lhtra" 
                      sh "git add ."
                      sh "git commit -m 'Updated image in deployment.yaml by Jenkins Job: ${env.BUILD_NUMBER}'"
-                     sh "git push -u origin main"
+                     sh "git push"
 
                 }
             }
