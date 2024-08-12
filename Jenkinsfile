@@ -4,7 +4,7 @@ pipeline {
     environment {
         REPO_URL = 'https://github.com/katoch1234/kubernetes-manifests.git'
         BRANCH = 'main'
-        GIT_CREDENTIALS = credentials('github-creds')  // Replace with your Jenkins credentials ID
+        GIT_CREDENTIALS = 'github-creds'  // Replace with your Jenkins credentials ID
         GIT_USER_NAME = 'cu.16bcs1092'
         GIT_USER_EMAIL = 'cu.16bcs1092@gmail.com '
     }
@@ -31,7 +31,7 @@ pipeline {
         stage('Pushing the deployment.yaml with updated image') {
             steps{
                 script{
-                    withCredentials([usernamePassword(credentialsId: "${github-creds}", usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: "${GIT_CREDENTIALS}", usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                      sh "git add deployment.yaml"
                      sh "git commit -m 'Updated image in deployment.yaml by Jenkins Job: ${env.BUILD_NUMBER}'"
                      sh "git push -u origin main"
