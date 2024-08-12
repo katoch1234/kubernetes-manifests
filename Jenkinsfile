@@ -14,7 +14,7 @@ pipeline {
         stage('Update Image in deployment.yaml') {
             steps {
                 script {
-                    withCredentials([gitUsernamePassword(credentialsId: 'github-creds', gitToolName: 'git-tool')]) {
+                    withCredentials([gitUsernamePassword(credentialsId: 'github_creds', gitToolName: 'git-tool')]) {
                    /* sh "git clone https://github.com/katoch1234/kubernetes-manifests.git"
                     sh "git config --global user.email '${GIT_USER_EMAIL}'"
                     sh "git config --global user.name '${GIT_USER_NAME}'" */
